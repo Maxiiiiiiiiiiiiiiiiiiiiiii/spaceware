@@ -29,7 +29,7 @@ console.add('warn', 'yellow')
 console.add('info', 'light_magenta')
 
 -- // init
-syn.queue_on_teleport(readfile('Dahood Egg Farm.lua'))
+syn.queue_on_teleport(readfile('DH Egg Farm.lua'))
 
 if not isfolder('dahood_farm') then
     console.info("creating 'dahood_farm', 'dahood_farm/last.txt', 'dahood_farm/looted.txt' for first time startup")
