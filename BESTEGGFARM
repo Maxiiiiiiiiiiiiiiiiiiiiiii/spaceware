@@ -1,4 +1,4 @@
--- // All the credits go to: https://v3rmillion.net/showthread.php?tid=1207091
+-- // console
 local console = {}
 
 function console.add(name, color)
@@ -29,7 +29,9 @@ console.add('warn', 'yellow')
 console.add('info', 'light_magenta')
 
 -- // init
-syn.queue_on_teleport(readfile('DH Egg Farm.lua'))
+if isfile('Dahood Egg Farm.lua') then
+    syn.queue_on_teleport(readfile('DH Egg Farm.lua'))
+end
 
 if not isfolder('dahood_farm') then
     console.info("creating 'dahood_farm', 'dahood_farm/last.txt', 'dahood_farm/looted.txt' for first time startup")
@@ -165,5 +167,14 @@ else
     rootpart = character:WaitForChild('HumanoidRootPart')    
     collect_eggs()
 end
+
+if tick() - tonumber(readfile('dahood_farm/last.txt')) > 120 then
+    refresh_cache()
+end
+
+teleportservice.TeleportInitFailed:Connect(function()
+    console.error('teleport error, retrying')
+    find_new_server()
+end)
 
 find_new_server()
